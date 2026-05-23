@@ -8,7 +8,8 @@ def compute_value_factor(returns, book, mcap, q=0.3):
 
     for date in returns.index:
         r = returns.loc[date].dropna()
-        scores = value_score.loc[r.index]
+        scores = value_score.reindex(r.index).dropna()
+        r = r.loc[scores.index]
 
         ranked = scores.rank(pct=True)
         long = ranked[ranked >= 1-q].index

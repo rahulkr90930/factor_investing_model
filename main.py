@@ -22,7 +22,7 @@ prices = yf.download(
 
 prices.to_csv("data/processed/daily_prices.csv")
 
-monthly_prices = prices.resample("M").last()
+monthly_prices = prices.resample("ME").last()
 monthly_returns = monthly_prices.pct_change().dropna()
 
 monthly_prices.to_csv("data/processed/monthly_prices.csv")
